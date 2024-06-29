@@ -5,8 +5,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
@@ -43,8 +41,6 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.nulabinc.zxcvbn.Strength;
-import com.nulabinc.zxcvbn.Zxcvbn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +116,6 @@ public class Dialogs {
     }
 
     public static void showSetPasswordDialog(ComponentActivity activity, PasswordSlotListener listener) {
-        Zxcvbn zxcvbn = new Zxcvbn();
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
         EditText textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
@@ -128,6 +123,8 @@ public class Dialogs {
         TextView textPasswordStrength = view.findViewById(R.id.text_password_strength);
         TextInputLayout textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
         CheckBox switchToggleVisibility = view.findViewById(R.id.check_toggle_visibility);
+        PasswordStrengthHelper passStrength = new PasswordStrengthHelper(
+                textPassword, barPasswordStrength, textPasswordStrength, textPasswordWrapper);
 
         switchToggleVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -183,13 +180,7 @@ public class Dialogs {
         TextWatcher watcher = new SimpleTextWatcher(text -> {
             boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
             buttonOK.get().setEnabled(equal);
-
-            Strength strength = zxcvbn.measure(textPassword.getText());
-            barPasswordStrength.setProgress(strength.getScore());
-            barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
-            textPasswordStrength.setText((textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), activity) : "");
-            textPasswordWrapper.setError(strength.getFeedback().getWarning());
-            strength.wipe();
+            passStrength.measure(activity);
         });
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);
@@ -197,10 +188,13 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret) {
+    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret,@Nullable String hint) {
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         TextInputEditText input = view.findViewById(R.id.text_input);
+        if(hint != null) {
+            input.setText(hint);
+        }
         input.addTextChangedListener(new SimpleTextWatcher(text -> {
             if (buttonOK.get() != null) {
                 buttonOK.get().setEnabled(!text.toString().isEmpty());
@@ -242,12 +236,16 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, String text) {
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, false, text);
+    }
+
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret);
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret, null);
     }
 
     public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, @Nullable DialogInterface.OnCancelListener onCancel) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false);
+        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false, null);
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener) {
@@ -255,19 +253,19 @@ public class Dialogs {
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, R.string.set_password, 0, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, R.string.set_password, 0, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, titleId, messageId, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, titleId, messageId, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showCheckboxDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int checkboxMessageId, CheckboxInputListener listener) {

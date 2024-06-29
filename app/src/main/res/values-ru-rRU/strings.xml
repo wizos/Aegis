@@ -28,11 +28,15 @@
     <string name="pref_section_security_summary">Настройка шифрования, биометрической разблокировки, автоматической блокировки и других параметров безопасности.</string>
     <string name="pref_section_import_export_title">Импорт и экспорт</string>
     <string name="pref_section_import_export_summary">Импорт резервных копий Aegis или других приложений для аутентификации. Экспорт хранилища Aegis вручную.</string>
+    <string name="pref_section_audit_log_title">Журнал событий</string>
+    <string name="pref_section_audit_log_summary">Просмотр всех зарегистрированных важных событий, произошедших в приложении.</string>
     <string name="pref_section_backups_title">Резервные копии</string>
     <string name="pref_section_backups_summary">Настройка автоматического резервного копирования в указанное место или включение в систему облачного резервного копирования Android.</string>
     <string name="pref_section_icon_packs">Наборы значков</string>
     <string name="pref_section_icon_packs_summary">Управление наборами значков</string>
     <string name="pref_select_theme_title">Тема</string>
+    <string name="pref_dynamic_colors_title">Динамические цвета</string>
+    <string name="pref_dynamic_colors_summary">Использовать наложение на основе цветов темы Android</string>
     <string name="pref_view_mode_title">Режим отображения</string>
     <string name="pref_lang_title">Язык</string>
     <string name="pref_show_icons_title">Показывать значки</string>
@@ -104,6 +108,26 @@
     <string name="pref_biometrics_summary">Разрешить биометрическую аутентификацию для разблокировки хранилища</string>
     <string name="pref_set_password_title">Изменить пароль</string>
     <string name="pref_set_password_summary">Установить новый пароль, который вам понадобится, чтобы разблокировать хранилище</string>
+    <string name="no_events_title">Нет записей о событиях</string>
+    <string name="no_events_description">Приложение не зарегистрировало ни одного важного события</string>
+    <string name="event_title_vault_unlocked">Хранилище разблокировано</string>
+    <string name="event_description_vault_unlocked">Хранилище успешно разблокировано</string>
+    <string name="event_title_backup_created">Резервирование выполнено</string>
+    <string name="event_description_backup_created">Резервная копия хранилища успешно создана</string>
+    <string name="event_title_android_backup_created">Резервирование Android выполнено</string>
+    <string name="event_description_android_backup_created">Резервная копия хранилища успешно создана Android</string>
+    <string name="event_title_vault_exported">Хранилище экспортировано</string>
+    <string name="event_description_vault_exported">Копия хранилища экспортирована</string>
+    <string name="event_title_entry_shared">Запись опубликована</string>
+    <string name="event_description_entry_shared">К записи применена команда \"поделиться\"</string>
+    <string name="event_title_vault_unlock_failed_password">Хранилище не разблокировано (пароль)</string>
+    <string name="event_description_vault_unlock_failed_password">Попытка разблокировать хранилище с помощью пароля завершилась неудачно</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Хранилище не разблокировано (биометрия)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Попытка разблокировать хранилище с помощью биометрии завершилась неудачно</string>
+    <string name="event_unknown">Неизвестный тип события</string>
+    <string name="today_at_time">Сегодня в %1$s</string>
+    <string name="day_of_week_at_time">%1$s в %2$s</string>
+    <string name="date_format">dd.MM.yyyy</string>
     <string name="export_encrypted">Шифровать хранилище</string>
     <string name="export_help">Экспорт внутреннего хранилища Aegis. Выберите формат:</string>
     <string name="export_warning_unencrypted">Вы собираетесь экспортировать незашифрованную копию хранилища Aegis. <b>Не рекомендуется</b>.</string>
@@ -293,6 +317,7 @@
     <string name="unrelated_google_auth_batches_error">Экспорт содержит информацию для несвязанного пакета. Попробуйте импортировать по 1 пакету за раз.</string>
     <string name="no_tokens_can_be_imported">В результате ни один ключ не может быть импортирован</string>
     <string name="unlocking_vault">Разблокировка хранилища</string>
+    <string name="rename_group">Переименовать группу</string>
     <string name="remove_group">Удалить группу</string>
     <string name="remove_group_description">Удалить группу? Записи из этой группы будут автоматически перемещены в «Нет группы».</string>
     <string name="remove_unused_groups">Удалить неиспользуемые группы</string>
@@ -310,7 +335,10 @@
     <string name="sort_alphabetically_name">Учётная запись (А→Я)</string>
     <string name="sort_alphabetically_name_reverse">Учётная запись (Я→А)</string>
     <string name="sort_usage_count">Количество использований</string>
+    <string name="sort_last_used">Последнее использование</string>
     <string name="sort_custom">Произвольно</string>
+    <string name="last_used">Последнее использование</string>
+    <string name="last_used_never">никогда</string>
     <string name="new_group">Новая группа…</string>
     <string name="group">Группа</string>
     <string name="group_name_hint">Название группы</string>
@@ -425,8 +453,8 @@
         <item quantity="many">%d / %d QR-кодов</item>
         <item quantity="other">%d / %d QR-кодов</item>
     </plurals>
-    <string name="next">Следующий</string>
-    <string name="previous">Предыдущий</string>
+    <string name="next">Следующее</string>
+    <string name="previous">Предыдущее</string>
     <string name="copy_uri">Копировать URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Невозможно скопировать URI в буфер обмена</string>
     <string name="uri_copied_to_clipboard">URI скопирован в буфер обмена</string>
@@ -438,6 +466,7 @@
     <string name="password_strength_fair">Средний</string>
     <string name="password_strength_good">Хороший</string>
     <string name="password_strength_strong">Сложный</string>
+    <string name="password_strength_unknown">Пароль слишком длинный для анализа надёжности</string>
     <string name="pref_pin_keyboard_title">PIN-клавиатура на экране блокировки</string>
     <string name="pref_pin_keyboard_summary">Включите, если хотите использовать PIN-клавиатуру на экране блокировки. Работает только для паролей из цифр.</string>
     <string name="title_activity_preferences">Настройки</string>
@@ -448,6 +477,7 @@
     <string name="title_activity_scan_qr">Сканировать QR-код</string>
     <string name="title_activity_import_entries">Импорт записей</string>
     <string name="title_activity_assign_icons">Назначить значки</string>
+    <string name="title_activity_licenses">Сторонние лицензии</string>
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В хранилище уже есть записи. Хотите удалить их перед импортом файла?\n\n<b>Если вы удалите существующие записи, то навсегда потеряете к ним доступ.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистить содержимое хранилища</string>
@@ -469,7 +499,7 @@
     <string name="importer_help_authy">Необходима копия файла <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, расположенного в папке «Authy» во внутренней памяти.</string>
     <string name="importer_help_andotp">Необходим файл экспорта/резервной копии andOTP.</string>
     <string name="importer_help_bitwarden">Необходим файл экспорта/резервной копии Bitwarden. Зашифрованные файлы не поддерживаются.</string>
-    <string name="importer_help_battle_net_authenticator">Необходима копия файла <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, расположенного в папке «Battle.net Authenticator» во внутренней памяти.</string>
+    <string name="importer_help_battle_net_authenticator">Необходима копия файла <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, расположенного в папке «Battle.net Authenticator» во внутренней памяти.</string>
     <string name="importer_help_duo">Необходима копия файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в папке «DUO» во внутренней памяти.</string>
     <string name="importer_help_freeotp">Необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP (1.x)» во внутренней памяти.</string>
     <string name="importer_help_freeotp_plus">Необходим файл экспорта FreeOTP+.</string>

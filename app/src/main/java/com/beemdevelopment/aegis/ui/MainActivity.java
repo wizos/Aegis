@@ -522,6 +522,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onDecryptResult() {
+        _auditLogRepository.addVaultUnlockedEvent();
+
         loadEntries();
         checkTimeSyncSetting();
     }
@@ -1045,6 +1047,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onSaveGroupFilter(Set<UUID> groupFilter) {
+        if (_vaultManager.getVault().isGroupsMigrationFresh()) {
+            saveAndBackupVault();
+        }
         _prefs.setGroupFilter(groupFilter);
     }
 
@@ -1176,6 +1181,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 for (VaultEntry entry : _selectedEntries) {
                     GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
                     authInfos.add(authInfo);
+
+                    _auditLogRepository.addEntrySharedEvent(entry.getUUID().toString());
                 }
 
                 intent.putExtra("authInfos", authInfos);

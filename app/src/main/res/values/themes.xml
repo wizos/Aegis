@@ -1,4 +1,11 @@
 <resources>
+    <style name="Theme.Aegis.Launch" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- colorPrimary in the root theme sets the task description color (seen in task switcher) -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="Base.Theme.Aegis.Light" parent="Theme.Material3.Light">
         <!-- Material colors -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
@@ -138,7 +145,8 @@
     </style>
 
     <style name="Base.Theme.Aegis.Amoled" parent="Base.Theme.Aegis.Dark">
-        <item name="android:colorBackground">#000000</item>
+        <!-- Setting android:colorBackground to #000000 on API 28 and below causes smearing -->
+        <item name="android:colorBackground">@android:color/black</item>
         <item name="colorSurface">#000000</item>
         <item name="colorSurfaceVariant">#000000</item>
         <item name="colorSurfaceContainerHighest">#000000</item>
@@ -152,7 +160,8 @@
     </style>
 
     <style name="ThemeOverlay.Aegis.Dynamic.Amoled" parent="ThemeOverlay.Material3.DynamicColors.Dark">
-        <item name="android:colorBackground">#000000</item>
+        <!-- Setting android:colorBackground to #000000 on API 28 and below causes smearing -->
+        <item name="android:colorBackground">@android:color/black</item>
         <item name="colorSurface">#000000</item>
         <item name="colorSurfaceVariant">#000000</item>
         <item name="colorSurfaceContainerHighest">#000000</item>
@@ -248,5 +257,10 @@
 
     <style name="Widget.Aegis.AlertDialog.Icon.Warning" parent="@style/MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
         <item name="android:tint">?attr/colorError</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Aegis.ImageView.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 </resources>

@@ -27,6 +27,7 @@
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
+        android:theme="@style/Theme.Aegis.Launch"
         tools:targetApi="tiramisu">
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
@@ -157,7 +158,7 @@
         <package android:name="com.valvesoftware.android.steam.community" />
         <package android:name="com.authenticator.authservice2" />
         <package android:name="com.duosecurity.duomobile" />
-        <package android:name="com.blizzard.bma" />
+        <package android:name="com.blizzard.messenger" />
     </queries>
 
 </manifest>

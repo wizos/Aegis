@@ -287,6 +287,10 @@ public class VaultRepository {
         removeGroup(group);
     }
 
+    public void renameGroup(VaultGroup renamedGroup) {
+        _vault.getGroups().replace(renamedGroup);
+    }
+
     public void removeGroup(VaultGroup group) {
         for (VaultEntry entry : getEntries()) {
             entry.removeGroup(group.getUUID());
@@ -308,6 +312,10 @@ public class VaultRepository {
         return getGroups().stream()
                 .filter(vg -> usedGroups.contains(vg.getUUID()))
                 .collect(Collectors.toList());
+    }
+
+    public boolean isGroupsMigrationFresh() {
+        return _vault.isGroupsMigrationFresh();
     }
 
     public VaultFileCredentials getCredentials() {

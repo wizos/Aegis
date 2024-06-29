@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">İkon paketleri</string>
     <string name="pref_section_icon_packs_summary">İkon paketlerini yönet ve içe aktar</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Dinamik renkler</string>
+    <string name="pref_dynamic_colors_summary">Android temanızın renklerine göre bir kaplama uygulayın</string>
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>
     <string name="pref_lang_title">Dil</string>
     <string name="pref_show_icons_title">Simgeleri göster</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Hesap (A\'dan  Z\'ye)</string>
     <string name="sort_alphabetically_name_reverse">Hesap (Z\'den A\'ya)</string>
     <string name="sort_usage_count">Kullanım sayısı</string>
+    <string name="sort_last_used">Son kullanım</string>
     <string name="sort_custom">İsteğe göre</string>
+    <string name="last_used">Son kullanım</string>
+    <string name="last_used_never">asla</string>
     <string name="new_group">Yeni grup…</string>
     <string name="group">Grup</string>
     <string name="group_name_hint">Grup adı</string>
@@ -352,7 +357,7 @@
     <string name="github_description">Kaynak kod, sorunlar ve bilgiler</string>
     <string name="license">Lisans</string>
     <string name="license_description">Aegis Doğrulayıcı GPLv3 lisansına sahiptir</string>
-    <string name="third_party_licenses">Üçüncü parti lisansları</string>
+    <string name="third_party_licenses">Üçüncü taraf lisanslar</string>
     <string name="third_party_licenses_description">Aegis\'in kullandığı üçüncü-parti kütüphanelerin lisansları</string>
     <string name="country_netherlands">Hollanda</string>
     <string name="email_us">Bir e-posta yazın</string>
@@ -426,6 +431,7 @@
     <string name="title_activity_scan_qr">QR Kodu Tara</string>
     <string name="title_activity_import_entries">Girdileri içe aktar</string>
     <string name="title_activity_assign_icons">Simgeleri ata</string>
+    <string name="title_activity_licenses">Üçüncü taraf lisanslar</string>
     <string name="dialog_wipe_entries_title">Girdileri sil</string>
     <string name="dialog_wipe_entries_message">Kasanızda zaten girdiler bulunmaktadır. İçe aktarmadan önce bu girdileri silmek istediğinize emin misiniz?\n\n<b>Deponun içinde bulunan girdilere erişiminizi sonsuza dek kaybedeceksiniz.</b></string>
     <string name="dialog_wipe_entries_checkbox">Kasa içeriklerini temizle</string>
@@ -445,7 +451,6 @@
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
-    <string name="importer_help_battle_net_authenticator"><b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>dosyasını sağlayın, Battle.net Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_duo">DUO\'nun dahili depolama dizininde bulunan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> dosyasının bir kopyasını sağlayın.</string>
     <string name="importer_help_freeotp">FreeOTP\'nin (1.x) dahili depolama dizininde bulunan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> dosyasının bir kopyasını sağlayın.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+ dışa aktarım dosyasını sağlayın.</string>
